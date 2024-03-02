@@ -1,0 +1,39 @@
+.product_container {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-family: Serif;
+  box-sizing: border-box;
+  max-width: 400px;
+  max-height: 342px;
+  box-shadow: 0 4px 16px rgba(107, 104, 104, 0.8);
+
+  overflow: hidden;
+}
+.product_container:hover {
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.2);
+}
+.product_image {
+  width: 100%;
+
+  border-radius: 10px;
+}
+.name_price {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+.food_description {
+  margin: 10px 0px;
+  font-family: Okra, Helvetica, sans-serif;
+}
+@media only screen and (max-width: 600px) {
+  .product_container {
+    margin-top: 12px;
+  }
+}
+.price {
+  color: rgb(76, 0, 255);
+}

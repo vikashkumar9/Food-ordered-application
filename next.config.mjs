@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["localhost"], // Specify the domains from which images will be served
+  },
+};
 
 export default nextConfig;
