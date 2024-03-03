@@ -46,23 +46,29 @@ const Page = ({ params }) => {
 
   return (
     <div className={styles.singlepage_container}>
-      <img src={"/" + productData.image} className={styles.image} />
-      <div className={styles.aboutproduct}>
-        <div className={styles.name}>{productData.name}</div>
-        <div className={styles.description}>{productData.description}</div>
-        <div className={styles.rupees}>
-          <span className={styles.rs_text}>RS - </span>
-          {productData.price}.
-        </div>
-        <div>
-          <Button
-            onClick={() => addItem(productData)}
-            className={styles.addto_cart}
-          >
-            Add Cart
-          </Button>
-        </div>
-      </div>
+      {productData ? (
+        <>
+          <img src={"/" + productData.image} className={styles.image} />
+          <div className={styles.aboutproduct}>
+            <div className={styles.name}>{productData.name}</div>
+            <div className={styles.description}>{productData.description}</div>
+            <div className={styles.rupees}>
+              <span className={styles.rs_text}>RS - </span>
+              {productData.price}.
+            </div>
+            <div>
+              <Button
+                onClick={() => addItem(productData)}
+                className={styles.addto_cart}
+              >
+                Add Cart
+              </Button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };

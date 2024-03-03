@@ -6,7 +6,7 @@ import MenuSearch from "@/components/MenuSearch/MenuSearch";
 import ProductContainer from "@/components/products/ProductContainer";
 import AutoPlay from "@/components/movingimages/AutoPlay";
 import Link from "next/link";
-import { Suspense } from "react";
+
 async function getdata() {
   const response = await fetch("http://localhost:3000/api/products");
   const data = await response.json();
@@ -37,29 +37,27 @@ function ProductList() {
 
   return (
     <div>
-      <Suspense fallback={<p>Loading...</p>}>
-        <div className={classes.menu_container}>
-          <div className={classes.searchbar}>
-            <MenuSearch addDatahandler={filterDataHandler} />
-          </div>{" "}
-          <AutoPlay data={products} />
-          <div className={classes.grid_container}>
-            {products.map((product) => (
-              <div key={product._id}>
-                <Link href={`/foodproducts/${product._id}`}>
-                  <ProductContainer
-                    name={product.name}
-                    description={product.description}
-                    price={product.price}
-                    category={product.category}
-                    imageName={product.image}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
+      <div className={classes.menu_container}>
+        <div className={classes.searchbar}>
+          <MenuSearch addDatahandler={filterDataHandler} />
+        </div>{" "}
+        <AutoPlay data={products} />
+        <div className={classes.grid_container}>
+          {products.map((product) => (
+            <div key={product._id}>
+              <Link href={`/foodproducts/${product._id}`}>
+                <ProductContainer
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  category={product.category}
+                  imageName={product.image}
+                />
+              </Link>
+            </div>
+          ))}
         </div>
-      </Suspense>
+      </div>
     </div>
   );
 }
