@@ -8,7 +8,7 @@ import AutoPlay from "@/components/movingimages/AutoPlay";
 import Link from "next/link";
 
 async function getdata() {
-  const response = await fetch("http://localhost:3000/api/products");
+  const response = await fetch("/api/products");
   const data = await response.json();
   return data;
 }

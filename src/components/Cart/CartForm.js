@@ -37,9 +37,7 @@ const CartForm = ({ product, setProduct }) => {
     });
     setProduct(updatedProduct);
   };
-  //   useEffect(() => {
-  //     deleteProduct();
-  //   }, [product]);
+
   return (
     <>
       {product.map((item) => (

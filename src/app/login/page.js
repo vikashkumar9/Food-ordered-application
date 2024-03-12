@@ -5,7 +5,7 @@ import styles from "./login.module.css";
 const LoginPage = () => {
   //   const [data, setdata] = useState([]);
   const handledata = async (regData) => {
-    const uploaddata = await fetch("http://localhost:3000/api/Login", {
+    const uploaddata = await fetch("/api/Login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

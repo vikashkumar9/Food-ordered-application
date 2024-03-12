@@ -27,13 +27,13 @@ const adduser = () => {
   const handledata = async () => {
     const imagedata = new FormData();
     imagedata.set("file", selectedImage);
-    const result = fetch("http://localhost:3000/api/uploadimage", {
+    const result = fetch("/api/uploadimage", {
       method: "POST",
       body: imagedata,
     });
     console.log(result);
 
-    const data = await fetch("http://localhost:3000/api/products", {
+    const data = await fetch("/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
