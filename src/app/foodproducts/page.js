@@ -22,6 +22,7 @@ function ProductList() {
     const fetchData = async () => {
       const data = await getdata();
       setProducts(data.result);
+      console.log("data", data);
     };
 
     fetchData();
