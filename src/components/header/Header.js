@@ -1,5 +1,5 @@
 "use client";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./header.module.css";
@@ -8,14 +8,33 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Context } from "@/components/Cartcontext/UserContext";
+import { usePathname, useRouter } from "next/navigation";
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [logindetails, setLogindetails] = useState();
   const { products } = useContext(Context);
+  const router = useRouter();
+  const pathname = usePathname();
   const noOfItems = products.length;
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("loginData");
+    setLogindetails(null);
+    router.push("/login");
+  };
+  useEffect(() => {
+    const data = localStorage.getItem("loginData");
+    if (data) {
+      setLogindetails(JSON.parse(data));
+      if (pathname === "/login") {
+        router.push("/foodproducts");
+      }
+    } else {
+      router.push("/login");
+    }
+  }, []);
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -39,11 +58,21 @@ const Header = () => {
               <li className={styles.link}>
                 <Link href="/about">About</Link>
               </li>
-              <li>
-                <Button className={styles.link}>
-                  <Link href="/login">Login</Link>
-                </Button>
-              </li>
+
+              {logindetails && logindetails.name ? (
+                <ul>
+                  <li>{logindetails.name}</li>
+                  <li>
+                    <Button onClick={handleLogout}>Logout</Button>
+                  </li>
+                </ul>
+              ) : (
+                <li>
+                  <Button className={styles.link}>
+                    <Link href="/login">Login</Link>
+                  </Button>
+                </li>
+              )}
             </ul>
           </div>
           <div className={styles.cart_contact}>

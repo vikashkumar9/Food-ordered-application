@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Loginform from "@/components/LoginForm/Loginform";
 import styles from "./login.module.css";
+import { useRouter } from "next/navigation";
 const LoginPage = () => {
   //   const [data, setdata] = useState([]);
+  const router = useRouter();
   const handledata = async (regData) => {
     const uploaddata = await fetch("/api/Login", {
       method: "POST",
@@ -12,7 +14,10 @@ const LoginPage = () => {
       },
       body: JSON.stringify(regData),
     });
-    console.log(regData);
+
+    localStorage.setItem("loginData", JSON.stringify(regData));
+    router.push("/");
+    window.location.reload();
   };
 
   const handleLogindata = (loginData) => {
