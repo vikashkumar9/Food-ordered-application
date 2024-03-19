@@ -3,18 +3,18 @@ import React, { useState } from "react";
 import styles from "./loginform.module.css";
 import Button from "../ui/Button";
 const Loginform = ({ addDate, addlogindata }) => {
-  const [name, setname] = useState("");
+  const [username, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [btntype, setBtntype] = useState("Register");
   const handleSubmit = (e) => {
     e.preventDefault();
     if (btntype == "Register") {
-      addDate({ name, email, password });
+      addDate({ username, email, password });
     } else {
       addlogindata({ email, password });
     }
-    setname("");
+    setusername("");
     setEmail("");
     setPassword("");
   };
@@ -34,8 +34,8 @@ const Loginform = ({ addDate, addlogindata }) => {
               <label>Enter user name</label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setname(e.target.value)}
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
                 required
               />
             </div>

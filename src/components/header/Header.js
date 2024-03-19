@@ -26,6 +26,7 @@ const Header = () => {
   };
   useEffect(() => {
     const data = localStorage.getItem("loginData");
+    console.log(data);
     if (data) {
       setLogindetails(JSON.parse(data));
       if (pathname === "/login") {
@@ -59,9 +60,9 @@ const Header = () => {
                 <Link href="/about">About</Link>
               </li>
 
-              {logindetails && logindetails.name ? (
+              {logindetails && logindetails.username ? (
                 <ul>
-                  <li>{logindetails.name}</li>
+                  <li>{logindetails.username}</li>
                   <li>
                     <Button onClick={handleLogout}>Logout</Button>
                   </li>

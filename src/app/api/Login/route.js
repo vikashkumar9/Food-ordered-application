@@ -12,12 +12,12 @@ export async function GET(req, res) {
 export async function POST(req, res) {
   const body = await req.json();
 
-  const { name, email, password } = body;
+  const { username, email, password } = body;
   console.log(body);
 
   await mongoose.connect(loginstr);
   const login = new Login({
-    username: name,
+    username: username,
     email: email,
     password: password,
   });
