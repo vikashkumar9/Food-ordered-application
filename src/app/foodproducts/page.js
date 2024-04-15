@@ -1,38 +1,33 @@
-// ProductList component
-"use client";
-import React, { useEffect, useState } from "react";
-import classes from "./foodproduct.module.css";
-import MenuSearch from "@/components/MenuSearch/MenuSearch";
-import ProductContainer from "@/components/products/ProductContainer";
-import AutoPlay from "@/components/movingimages/AutoPlay";
-import Link from "next/link";
+'use client';
+import React, { useEffect, useState } from 'react';
+import classes from './foodproduct.module.css';
+import MenuSearch from '@/components/MenuSearch/MenuSearch';
+import ProductContainer from '@/components/products/ProductContainer';
+import AutoPlay from '@/components/movingimages/AutoPlay';
+import Link from 'next/link';
 
 async function getdata() {
-  const response = await fetch("/api/products");
+  const response = await fetch('/api/products');
   const data = await response.json();
   return data;
 }
-
 function ProductList() {
   const [products, setProducts] = useState([]);
 
-  const [searchItems, setSearchItems] = useState("");
-
+  const fetchData = async () => {
+    const data = await getdata();
+    setProducts(data.result);
+    console.log('data', data);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getdata();
-      setProducts(data.result);
-      console.log("data", data);
-    };
-
     fetchData();
   }, []);
 
   const filterDataHandler = (dataItems) => {
-    setSearchItems(dataItems.toLowerCase());
     const filteredData = products.filter((item) => {
-      return item.name.toLowerCase().includes(searchItems.toLowerCase());
+      return item.name.toLowerCase().includes(dataItems.toLowerCase());
     });
+
     setProducts(filteredData);
   };
 
@@ -41,7 +36,7 @@ function ProductList() {
       <div className={classes.menu_container}>
         <div className={classes.searchbar}>
           <MenuSearch addDatahandler={filterDataHandler} />
-        </div>{" "}
+        </div>
         <AutoPlay data={products} />
         <div className={classes.grid_container}>
           {products.map((product) => (
