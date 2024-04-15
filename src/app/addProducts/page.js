@@ -66,6 +66,8 @@ const adduser = () => {
       headers: {
         "Content-Type": "application/json",
       },
+    }).then(() =>{
+      getData()
     });
   };
 
